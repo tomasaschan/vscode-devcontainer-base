@@ -1,0 +1,56 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+  pull_request:
+
+env:
+  IMAGES: 'base|base-ubuntu-20.04 haskell|haskell dotnet|dotnet'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build images
+        run: |
+          # strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # strip leading v from tagged version
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          # use 'latest' as version for master builds
+          [ "$VERSION" == "master" ] && VERSION=latest
+
+          for img in $IMAGES; do
+            folder=${img%|*}
+            image_name=${img#*|}
+            if [[ "$image_name" == "base-ubuntu-20.04" ]]; then
+              docker build $folder -t docker.pkg.github.com/tomasaschan/vscode-devcontainers/$image_name:$VERSION
+            else
+              docker build $folder -t docker.pkg.github.com/tomasaschan/vscode-devcontainers/$image_name:$VERSION --build-arg BASE_IMAGE_NAME=$VERSION
+            fi
+          done
+
+      - name: Log into registry
+        if: github.event_name == 'push'
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      
+      - name: Push images
+        if: github.event_name == 'push'
+        run: |
+          # strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # strip leading v from tagged version
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          # use 'latest' as version for master builds
+          [ "$VERSION" == "master" ] && VERSION=latest
+
+          for img in $IMAGES; do
+            image_name=${img#*|}
+            docker push docker.pkg.github.com/tomasaschan/vscode-devcontainers/$image_name:$VERSION
+          done
