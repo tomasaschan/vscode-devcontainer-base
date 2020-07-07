@@ -1,4 +1,6 @@
-FROM docker.pkg.github.com/tomasaschan/vscode-devcontainers/base-ubuntu-20.04:0.1
+ARG BASE_IMAGE_VERSION=latest
+
+FROM docker.pkg.github.com/tomasaschan/vscode-devcontainers/base-ubuntu-20.04:${BASE_IMAGE_VERSION}
 
 RUN apt-get update && \
     apt-get install -y \
