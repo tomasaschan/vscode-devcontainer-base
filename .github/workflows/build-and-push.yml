@@ -26,8 +26,8 @@ jobs:
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           # strip leading v from tagged version
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-          # use 'latest' as version for master builds
-          [ "$VERSION" == "master" ] && VERSION=latest
+          # use 'latest' as version for main builds
+          [ "$VERSION" == "main" ] && VERSION=latest
 
           for img in $IMAGES; do
             folder=${img%|*}
@@ -46,8 +46,8 @@ jobs:
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           # strip leading v from tagged version
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-          # use 'latest' as version for master builds
-          [ "$VERSION" == "master" ] && VERSION=latest
+          # use 'latest' as version for main builds
+          [ "$VERSION" == "main" ] && VERSION=latest
 
           for img in $IMAGES; do
             image_name=${img#*|}
