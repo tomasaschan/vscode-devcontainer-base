@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
       - uses: actions/checkout@v2
       - name: Build images
         run: |
@@ -36,10 +39,6 @@ jobs:
             fi
           done
 
-      - name: Log into registry
-        if: github.event_name == 'push'
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-      
       - name: Push images
         if: github.event_name == 'push'
         run: |
