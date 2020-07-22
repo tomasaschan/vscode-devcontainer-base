@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  IMAGES: 'base|base-ubuntu-20.04 haskell|haskell dotnet|dotnet'
+  IMAGES: 'base|base-ubuntu-20.04 haskell|haskell dotnet|dotnet node|node'
 
 jobs:
   build:
