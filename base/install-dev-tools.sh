@@ -11,8 +11,10 @@ apt-get install -y \
     docker-ce-cli \
     git \
     gnupg2 \
+    httpie \
     nano \
     openssh-client \
+    rsync \
     sudo \
     unzip \
     
