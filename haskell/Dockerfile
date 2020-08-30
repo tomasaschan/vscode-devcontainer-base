@@ -33,5 +33,4 @@ RUN stack ls snapshots
 
 WORKDIR /workspace
 
-RUN stack install brittany
-
+RUN stack install brittany ormolu
