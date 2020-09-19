@@ -33,4 +33,4 @@ RUN stack ls snapshots
 
 WORKDIR /workspace
 
-RUN stack install brittany ormolu
+RUN stack install brittany ormolu stylish-haskell
