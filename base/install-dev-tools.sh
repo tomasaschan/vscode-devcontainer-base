@@ -9,6 +9,7 @@ add-apt-repository ppa:git-core/ppa
 apt-get update 
 apt-get install -y \
     docker-ce-cli \
+    entr \
     git \
     gnupg2 \
     httpie \
