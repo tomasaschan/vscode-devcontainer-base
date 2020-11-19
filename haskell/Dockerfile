@@ -11,6 +11,7 @@ RUN apt-get update && \
     libtinfo5 \
     libtinfo-dev \
     libgmp-dev \
+    libpcre3-dev \
     zlib1g-dev \
     && \
     apt-get autoremove -y && \
