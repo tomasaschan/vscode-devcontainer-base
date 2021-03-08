@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Set the locale
 apt-get install -y locales
 
