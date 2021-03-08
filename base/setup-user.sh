@@ -6,7 +6,8 @@ groupadd docker
 
 useradd -m dev -s /bin/bash
 echo "dev:changeme" | chpasswd
-usermod -aG sudo,docker dev
+usermod -aG docker dev
+echo "dev ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 mkdir -p /workspace && \
 chown -R dev:dev /workspace
