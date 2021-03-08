@@ -13,6 +13,7 @@ apt-get install -y \
     docker-ce-cli \
     entr \
     git \
+    git-extras \
     gnupg2 \
     httpie \
     nano \
