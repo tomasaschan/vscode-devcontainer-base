@@ -14,6 +14,10 @@ RUN /tmp/configure-system.sh
 COPY setup-user.sh /tmp/
 RUN /tmp/setup-user.sh
 
+RUN chown -R dev:dev /go
+
+USER dev
+
 RUN \
   go get -v github.com/ramya-rao-a/go-outline && \
   go get -v golang.org/x/tools/gopls

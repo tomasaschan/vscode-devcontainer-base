@@ -40,3 +40,5 @@ if type "kubectl" > /dev/null 2>&1; then
   complete -F __start_kubectl k
 fi
 ' > /home/dev/.bashrc.d/kubectlrc.sh
+
+chown -R dev:dev /home/dev
