@@ -9,6 +9,7 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
 
 apt-get update 
 apt-get install -y \
+    bash-completion \
     docker-ce-cli \
     entr \
     git \
