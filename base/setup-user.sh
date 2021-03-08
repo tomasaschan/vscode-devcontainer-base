@@ -21,3 +21,19 @@ fi
 
 mkdir -p /home/dev/.local/bin
 echo 'export PATH=$HOME/.local/bin:$PATH' > /home/dev/.bashrc.d/localbinrc.sh
+
+if [ -f /usr/local/share/copy-kube-config.sh ]; then
+  chown dev:root /usr/local/share/copy-kube-config.sh
+fi
+
+printf 'if [ -f /usr/local/share/copy-kube-config.sh ]; then
+  source /usr/local/share/copy-kube-config.sh
+fi
+
+if type "kubectl" > /dev/null 2>&1; then
+  source <(kubectl completion bash)
+
+  alias k=kubectl
+  complete -F __start_kubectl k
+fi
+' > /home/dev/.bashrc.d/kubectlrc.sh
