@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 DEBIAN_FRONTEND=noninteractive
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - 

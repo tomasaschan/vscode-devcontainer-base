@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 groupadd docker
 
 useradd -m dev -s /bin/bash
