@@ -30,6 +30,11 @@ USER dev
 
 WORKDIR /home/dev
 
+ARG STACK_SNAPSHOT=lts-16.31
+
+RUN mkdir -p /home/dev/.stack/global-project && \
+    (echo "packages: []"; echo "snapshot: ${STACK_SNAPSHOT}") > /home/dev/.stack/global-project/stack.yaml
+
 RUN stack ls snapshots
 
 WORKDIR /workspace
