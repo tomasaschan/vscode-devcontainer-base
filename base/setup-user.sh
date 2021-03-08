@@ -13,6 +13,7 @@ mkdir -p /workspace && \
 chown -R dev:dev /workspace
 
 mkdir -p /home/dev/.bashrc.d
+# shellcheck disable=SC2016
 printf 'if [ -d $HOME/.bashrc.d/ ]; then
   for rc in $HOME/.bashrc.d/*rc.sh; do
     source $rc
@@ -21,6 +22,7 @@ fi
 ' >> /home/dev/.bashrc
 
 mkdir -p /home/dev/.local/bin
+# shellcheck disable=SC2016
 echo 'export PATH=$HOME/.local/bin:$PATH' > /home/dev/.bashrc.d/localbinrc.sh
 
 if [ -f /usr/local/share/copy-kube-config.sh ]; then
