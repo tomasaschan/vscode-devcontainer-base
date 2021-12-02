@@ -7,6 +7,9 @@ on:
     tags:
       - v*
   pull_request:
+  workflow_dispatch:
+  schedule:
+  - cron: '13 4 3 * *'
 
 env:
   IMAGES: "base|base-ubuntu-20.04 haskell|haskell dotnet|dotnet node|node golang|golang"
